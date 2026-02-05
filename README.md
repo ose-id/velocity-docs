@@ -1,66 +1,18 @@
-# Vue Starter ⚡
+<div align="center">
+<picture>
+    <img src="./public/img/logo.png" width="128px">
+</picture>
+</div>
+<h1 align="center">
+Clone Tools Website
+</h1>
 
-![Static Badge](https://img.shields.io/badge/license-MIT-brightgreen?label=LICENSE)
+<a href="LICENSE">
+    <img src="https://img.shields.io/badge/License-MIT-yellow.svg" alt="License: MIT">
+</a>
 
-A lightweight Vue starter template built with Vite and Tailwind CSS. Fast development environment with HMR (Hot Module Replacement) and modern tooling out of the box.
+This repository contains the source code for the **Clone Tools Website**.
 
----
+**Clone Tools** is a next-generation Git client for Windows that simplifies your development workflow. It allows you to instantly clone repositories, manage your projects efficiently, and integrates seamlessly with your favorite IDEs like VS Code, Cursor, and Windsurf.
 
-## Getting Started
-
-### Requirements
-
-- [Node.js](https://nodejs.org/) (LTS recommended)
-- npm, yarn, pnpm, or bun
-
-### Install dependencies
-
-```bash
-npm install
-```
-
-### Run the development server
-
-```bash
-npm run dev
-```
-
-The development server will start at `http://localhost:5173`
-
----
-
-> [!NOTE]
-> Prefer using another package manager? Use one of the following:
->
-> ```bash
-> yarn install
-> # or
-> pnpm install
-> # or
-> bun install
-> ```
-
----
-
-## Available Scripts
-
-- `npm run dev` - Start the development server
-- `npm run build` - Build for production
-- `npm run preview` - Preview the production build locally
-- `npm run lint` - Run ESLint to check code quality
-
----
-
-## Features
-
-- ⚡ **Vite** - Next generation frontend tooling
-- ⚛️ **Vue 3** - Latest React version
-- 🎨 **Tailwind CSS** - Utility-first CSS framework
-- 📝 **ESLint** - Code quality and consistency
-- 🔥 **HMR** - Fast refresh during development
-
----
-
-## License
-
-This project is licensed under the [MIT](LICENSE) license.
+The website is built with [Vue.js](https://vuejs.org/) and [Tailwind CSS](https://tailwindcss.com/) to deliver a fast and responsive user experience.
