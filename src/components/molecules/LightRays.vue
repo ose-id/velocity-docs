@@ -2,15 +2,7 @@
 import { Mesh, Program, Renderer, Triangle } from 'ogl';
 import { computed, nextTick, onMounted, onUnmounted, ref, useTemplateRef, watch } from 'vue';
 
-export type RaysOrigin
-  = | 'top-center'
-    | 'top-left'
-    | 'top-right'
-    | 'right'
-    | 'left'
-    | 'bottom-center'
-    | 'bottom-right'
-    | 'bottom-left';
+export type RaysOrigin = 'top-center' | 'top-left' | 'top-right' | 'right' | 'left' | 'bottom-center' | 'bottom-right' | 'bottom-left';
 
 interface LightRaysProps {
   raysOrigin?: RaysOrigin;
@@ -83,6 +75,7 @@ const meshRef = ref<Mesh | null>(null);
 const cleanupFunctionRef = ref<(() => void) | null>(null);
 const isVisible = ref<boolean>(false);
 const observerRef = ref<IntersectionObserver | null>(null);
+const resizeObserverRef = ref<ResizeObserver | null>(null);
 const resizeTimeoutRef = ref<number | null>(null);
 
 const rgbColor = computed<[number, number, number]>(() => hexToRgb(props.raysColor));
@@ -333,10 +326,14 @@ async function initializeWebGL(): Promise<void> {
     };
 
     const handleResize = (): void => {
+      if (!containerRef.value)
+        return;
       debouncedUpdatePlacement(updatePlacement);
     };
 
-    window.addEventListener('resize', handleResize, { passive: true });
+    resizeObserverRef.value = new ResizeObserver(handleResize);
+    resizeObserverRef.value.observe(containerRef.value);
+
     updatePlacement();
     animationIdRef.value = requestAnimationFrame(loop);
 
@@ -346,7 +343,10 @@ async function initializeWebGL(): Promise<void> {
         animationIdRef.value = null;
       }
 
-      window.removeEventListener('resize', handleResize);
+      if (resizeObserverRef.value) {
+        resizeObserverRef.value.disconnect();
+        resizeObserverRef.value = null;
+      }
 
       if (resizeTimeoutRef.value) {
         clearTimeout(resizeTimeoutRef.value);
@@ -506,6 +506,11 @@ onUnmounted((): void => {
   if (mouseThrottleId) {
     cancelAnimationFrame(mouseThrottleId);
     mouseThrottleId = null;
+  }
+
+  if (resizeObserverRef.value) {
+    resizeObserverRef.value.disconnect();
+    resizeObserverRef.value = null;
   }
 
   window.removeEventListener('mousemove', handleMouseMove);

@@ -1,16 +1,12 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core';
-import { computed, onMounted } from 'vue';
+import { computed } from 'vue';
 import LightRays from '@/components/molecules/LightRays.vue';
 import Button from '@/components/ui/Button.vue';
 import { useGithubRelease } from '@/composables/useGithubRelease';
 
 const { downloadUrl } = useGithubRelease();
 const { y } = useWindowScroll();
-
-onMounted(() => {
-  window.dispatchEvent(new Event('resize'));
-});
 
 const imageStyle = computed(() => {
   const startScale = 0.5;
