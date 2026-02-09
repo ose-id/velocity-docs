@@ -3,9 +3,9 @@ const footerSections = [
   {
     title: 'Community',
     links: [
-      { label: 'GitHub', href: 'https://github.com/adydetra/clone-tools' },
-      { label: 'Twitter', href: '#' },
-      { label: 'Discord', href: '#' },
+      { label: 'BlueSky', href: 'https://bsky.app/profile/ose.web.id' },
+      { label: 'GitHub', href: 'https://github.com/ose-id/velocity' },
+      { label: 'Discord', href: 'https://discord.gg/5vRuSQHm9Y' },
     ],
   },
 ];
@@ -52,12 +52,7 @@ const legalLinks = [
           <img src="/img/logo.png" alt="Clone Tools Logo" class="h-6 w-auto">
         </div>
         <div class="flex gap-6">
-          <a
-            v-for="link in legalLinks"
-            :key="link.label"
-            :href="link.href"
-            class="hover:text-foreground transition-colors cursor-pointer"
-          >
+          <a v-for="link in legalLinks" :key="link.label" :href="link.href" class="hover:text-foreground transition-colors cursor-pointer">
             {{ link.label }}
           </a>
           <span>&copy; {{ new Date().getFullYear() }}</span>
