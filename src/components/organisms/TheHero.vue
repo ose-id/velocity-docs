@@ -22,7 +22,7 @@ const { downloadUrl } = useGithubRelease();
           Download for Windows
         </Button>
       </a>
-      <a href="https://github.com/adydetra/clone-tools" target="_blank">
+      <a href="https://github.com/ose-id/velocity" target="_blank">
         <Button variant="outline" size="lg" class="h-14 px-8 text-lg rounded-full cursor-pointer">
           View on GitHub
         </Button>

@@ -1,7 +1,7 @@
 import { useFetch } from '@vueuse/core';
 import { ref, watch } from 'vue';
 
-const REPO = import.meta.env.VITE_GITHUB_REPO || 'adydetra/clone-tools';
+const REPO = import.meta.env.VITE_GITHUB_REPO || 'ose-id/velocity';
 const API_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 const FALLBACK_URL = `https://github.com/${REPO}/releases/latest`;
 
