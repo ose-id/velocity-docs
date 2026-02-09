@@ -14,5 +14,3 @@ Velocity Website
 This repository contains the source code for the **Velocity Website**.
 
 **Velocity** is a next-generation Git client for Windows that simplifies your development workflow. It allows you to instantly clone repositories, manage your projects efficiently, and integrates seamlessly with your favorite IDEs like VS Code, Cursor, and Windsurf.
-
-The website is built with [Vue.js](https://vuejs.org/) and [Tailwind CSS](https://tailwindcss.com/) to deliver a fast and responsive user experience.
