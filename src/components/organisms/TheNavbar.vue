@@ -75,7 +75,10 @@ function setNavRef(el, id) {
         <img src="/img/logo.png" alt="Clone Tools Logo" class="h-8 w-auto">
       </div>
 
-      <nav class="hidden md:flex items-center relative gap-1 p-1 bg-muted/30 rounded-full border border-white/5">
+      <nav
+        v-if="$route.path === '/'"
+        class="hidden md:flex items-center relative gap-1 p-1 bg-muted/30 rounded-full border border-white/5"
+      >
         <div
           class="absolute top-1 bottom-1 bg-neutral-800 rounded-full transition-all duration-500 ease-[cubic-bezier(0.175,0.885,0.32,1.275)]"
           :style="pillStyle"
@@ -85,7 +88,7 @@ function setNavRef(el, id) {
           v-for="item in navItems"
           :key="item.id"
           :ref="(el) => setNavRef(el, item.id)"
-          :href="`#${item.id}`"
+          :href="`/#${item.id}`"
           class="relative z-10 px-5 py-1.5 text-sm font-medium transition-colors rounded-full cursor-pointer"
           :class="[
             activeSection === item.id

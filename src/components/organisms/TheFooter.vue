@@ -11,8 +11,8 @@ const footerSections = [
 ];
 
 const legalLinks = [
-  { label: 'Privacy Service', href: '#' },
-  { label: 'Terms of Service', href: '#' },
+  { label: 'Privacy Service', href: '/privacy' },
+  { label: 'Terms of Service', href: '/terms' },
 ];
 </script>
 
