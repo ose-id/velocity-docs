@@ -1,10 +1,14 @@
 <script setup>
 import { Download } from 'lucide-vue-next';
-import { nextTick, onMounted, onUnmounted, ref, watch } from 'vue';
+import { nextTick, onUnmounted, ref, watch } from 'vue';
+import { useRoute } from 'vue-router';
 import Button from '@/components/ui/Button.vue';
 import { useGithubRelease } from '@/composables/useGithubRelease';
 
+// ... (existing imports)
+
 const { downloadUrl } = useGithubRelease();
+const route = useRoute();
 const activeSection = ref('');
 const navRefs = ref({});
 const pillStyle = ref({ opacity: 0, left: '0px', width: '0px' });
@@ -27,7 +31,10 @@ function updatePillPosition() {
   }
 }
 
-onMounted(() => {
+function setupObserver() {
+  if (observer)
+    observer.disconnect();
+
   observer = new IntersectionObserver((entries) => {
     entries.forEach((entry) => {
       if (entry.isIntersecting) {
@@ -39,12 +46,27 @@ onMounted(() => {
     rootMargin: '-10% 0px -10% 0px',
   });
 
-  ['features', 'testimonials', 'faq'].forEach((id) => {
+  ['hero', 'features', 'testimonials'].forEach((id) => {
     const element = document.getElementById(id);
     if (element)
       observer.observe(element);
   });
-});
+}
+
+// Watch for route changes to set up or tear down observer
+watch(() => route.path, async (newPath) => {
+  if (newPath === '/') {
+    // Wait for DOM to update
+    await nextTick();
+    // Use a small timeout to ensure child components (HomeView) are mounted
+    setTimeout(setupObserver, 100);
+  }
+  else {
+    if (observer)
+      observer.disconnect();
+    activeSection.value = '';
+  }
+}, { immediate: true }); // Run immediately on mount
 
 onUnmounted(() => {
   if (observer)

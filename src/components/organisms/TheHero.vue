@@ -6,7 +6,7 @@ const { downloadUrl } = useGithubRelease();
 </script>
 
 <template>
-  <section class="container mx-auto px-4 md:px-6 py-24 md:py-32 flex flex-col items-center justify-center text-center gap-10 min-h-[60vh]">
+  <section id="hero" class="container mx-auto px-4 md:px-6 py-24 md:py-32 flex flex-col items-center justify-center text-center gap-10 min-h-[60vh]">
     <div>
       <img src="/img/logo.png" alt="Clone Tools Logo" class="h-16 w-auto mx-auto">
     </div>
