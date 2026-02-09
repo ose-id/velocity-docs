@@ -1,6 +1,6 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core';
-import { computed, nextTick, onMounted } from 'vue';
+import { computed, onMounted } from 'vue';
 import LightRays from '@/components/molecules/LightRays.vue';
 import Button from '@/components/ui/Button.vue';
 import { useGithubRelease } from '@/composables/useGithubRelease';
@@ -9,9 +9,7 @@ const { downloadUrl } = useGithubRelease();
 const { y } = useWindowScroll();
 
 onMounted(() => {
-  nextTick(() => {
-    window.dispatchEvent(new Event('resize'));
-  });
+  window.dispatchEvent(new Event('resize'));
 });
 
 const imageStyle = computed(() => {
@@ -32,7 +30,7 @@ const imageStyle = computed(() => {
 
 <template>
   <section id="hero" class="relative w-full py-24 md:py-32 pb-20 overflow-visible">
-    <div class="absolute -top-16 left-0 right-0 bottom-0 pointer-events-none z-0">
+    <div class="absolute -top-16 left-0 right-0 h-[calc(100%+4rem)] pointer-events-none z-0">
       <LightRays
         rays-origin="top-center"
         rays-color="#a3a3a3"
