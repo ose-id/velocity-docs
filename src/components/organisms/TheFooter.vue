@@ -72,13 +72,13 @@ const legalLinks = [
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-muted-foreground">
-        <NuxtLink to="https://www.ose.web.id" target="_blank" class="flex items-center gap-2 font-bold text-foreground">
+        <a href="https://www.ose.web.id" target="_blank" class="flex items-center gap-2 font-bold text-foreground">
           <img src="/img/logo.png" alt="Clone Tools Logo" class="h-6 w-auto">
-        </NuxtLink>
+        </a>
         <div class="flex gap-6">
-          <NuxtLink v-for="link in legalLinks" :key="link.label" :to="link.href" class="hover:text-foreground transition-colors cursor-pointer">
+          <RouterLink v-for="link in legalLinks" :key="link.label" :to="link.href" class="hover:text-foreground transition-colors cursor-pointer">
             {{ link.label }}
-          </NuxtLink>
+          </RouterLink>
           <span>&copy; {{ new Date().getFullYear() }}</span>
         </div>
       </div>
