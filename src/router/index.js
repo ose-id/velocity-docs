@@ -25,7 +25,11 @@ const router = createRouter({
       return savedPosition;
     }
     else {
-      return { top: 0 };
+      return new Promise((resolve) => {
+        setTimeout(() => {
+          resolve({ top: 0, behavior: 'smooth' });
+        }, 100);
+      });
     }
   },
 });
