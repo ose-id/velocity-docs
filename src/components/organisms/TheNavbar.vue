@@ -1,11 +1,10 @@
 <script setup>
+import { useIntersectionObserver } from '@vueuse/core';
 import { Download } from 'lucide-vue-next';
-import { nextTick, onUnmounted, ref, watch } from 'vue';
+import { nextTick, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import Button from '@/components/ui/Button.vue';
 import { useGithubRelease } from '@/composables/useGithubRelease';
-
-// ... (existing imports)
 
 const { downloadUrl } = useGithubRelease();
 const route = useRoute();
@@ -13,12 +12,50 @@ const activeSection = ref('');
 const navRefs = ref({});
 const pillStyle = ref({ opacity: 0, left: '0px', width: '0px' });
 
-let observer = null;
+const targets = ref([]);
+
+watch(
+  () => route.path,
+  async (path) => {
+    if (path === '/') {
+      await nextTick();
+      setTimeout(() => {
+        targets.value = ['hero', 'features', 'testimonials']
+          .map(id => document.getElementById(id))
+          .filter(el => el);
+      }, 100);
+    }
+    else {
+      targets.value = [];
+      activeSection.value = '';
+    }
+  },
+  { immediate: true },
+);
+
+useIntersectionObserver(
+  targets,
+  (entries) => {
+    entries.forEach((entry) => {
+      if (entry.isIntersecting) {
+        activeSection.value = entry.target.id;
+      }
+    });
+  },
+  {
+    threshold: 0.5,
+    rootMargin: '-10% 0px -10% 0px',
+  },
+);
+
+watch(activeSection, async () => {
+  await nextTick();
+  updatePillPosition();
+});
 
 function updatePillPosition() {
   const activeId = activeSection.value;
   const el = navRefs.value[activeId];
-
   if (el) {
     pillStyle.value = {
       opacity: 1,
@@ -31,57 +68,9 @@ function updatePillPosition() {
   }
 }
 
-function setupObserver() {
-  if (observer)
-    observer.disconnect();
-
-  observer = new IntersectionObserver((entries) => {
-    entries.forEach((entry) => {
-      if (entry.isIntersecting) {
-        activeSection.value = entry.target.id;
-      }
-    });
-  }, {
-    threshold: 0.5,
-    rootMargin: '-10% 0px -10% 0px',
-  });
-
-  ['hero', 'features', 'testimonials'].forEach((id) => {
-    const element = document.getElementById(id);
-    if (element)
-      observer.observe(element);
-  });
-}
-
-// Watch for route changes to set up or tear down observer
-watch(() => route.path, async (newPath) => {
-  if (newPath === '/') {
-    // Wait for DOM to update
-    await nextTick();
-    // Use a small timeout to ensure child components (HomeView) are mounted
-    setTimeout(setupObserver, 100);
-  }
-  else {
-    if (observer)
-      observer.disconnect();
-    activeSection.value = '';
-  }
-}, { immediate: true }); // Run immediately on mount
-
-onUnmounted(() => {
-  if (observer)
-    observer.disconnect();
-});
-
-watch(activeSection, async () => {
-  await nextTick();
-  updatePillPosition();
-});
-
 const navItems = [
   { id: 'features', label: 'Features' },
   { id: 'testimonials', label: 'Testimonials' },
-
 ];
 
 function setNavRef(el, id) {

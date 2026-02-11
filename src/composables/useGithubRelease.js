@@ -1,37 +1,35 @@
 import { useFetch } from '@vueuse/core';
-import { ref, watch } from 'vue';
+import { computed } from 'vue';
 
 const REPO = import.meta.env.VITE_GITHUB_REPO || 'ose-id/velocity';
 const API_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 const FALLBACK_URL = `https://github.com/${REPO}/releases/latest`;
 
 export function useGithubRelease() {
-  const downloadUrl = ref(FALLBACK_URL);
-  const tagName = ref('');
-  const isLoading = ref(true);
+  const { data, isFetching } = useFetch(API_URL).json();
 
-  const { data } = useFetch(API_URL).json();
-
-  watch(data, (newData) => {
-    if (newData && newData.assets) {
-      const exeAsset = newData.assets.find(asset =>
+  const downloadUrl = computed(() => {
+    if (data.value && data.value.assets) {
+      const exeAsset = data.value.assets.find(asset =>
         asset.name.endsWith('.exe'),
       );
-
       if (exeAsset) {
-        downloadUrl.value = exeAsset.browser_download_url;
-      }
-
-      if (newData.tag_name) {
-        tagName.value = newData.tag_name;
+        return exeAsset.browser_download_url;
       }
     }
-    isLoading.value = false;
+    return FALLBACK_URL;
+  });
+
+  const tagName = computed(() => {
+    if (data.value && data.value.tag_name) {
+      return data.value.tag_name;
+    }
+    return '';
   });
 
   return {
     downloadUrl,
     tagName,
-    isLoading,
+    isLoading: isFetching,
   };
 }
