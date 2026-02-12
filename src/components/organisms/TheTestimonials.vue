@@ -9,7 +9,7 @@ const testimonials = [
     name: 'Muhammad Fathir Ikhsan',
     role: 'Full Stack Developer',
     avatar: 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=fathir',
-    content: 'Clone Tools has saved me so much time. Setting up a new environment is now just one click away. Highly recommended!',
+    content: 'Velocity has saved me so much time. Setting up a new environment is now just one click away. Highly recommended!',
   },
   {
     name: 'Banny Juanda',

@@ -32,7 +32,7 @@ const imageStyle = computed(() => {
         <div class="h-3 w-3 rounded-full bg-green-500" />
       </div>
       <div class="w-full bg-muted/50">
-        <img src="/img/hero.png" alt="Clone Tools Application Screenshot" class="w-full h-auto block">
+        <img src="/img/hero.png" alt="Velocity Application Screenshot" class="w-full h-auto block">
       </div>
     </div>
   </section>

@@ -66,14 +66,14 @@ const legalLinks = [
       </div>
 
       <div class="relative w-full border-b border-border/40 mb-10">
-        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-tighter text-center md:text-left select-none pointer-events-none opacity-90 mx-[-2vw]">
-          CLONE TOOLS
+        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-center md:text-left select-none pointer-events-none opacity-90">
+          VELOCITY
         </h1>
       </div>
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-muted-foreground">
         <a href="https://www.ose.web.id" target="_blank" class="flex items-center gap-2 font-bold text-foreground">
-          <img src="/img/logo.png" alt="Clone Tools Logo" class="h-6 w-auto">
+          <img src="/img/logo.png" alt="Velocity Logo" class="h-6 w-auto">
         </a>
         <div class="flex gap-6">
           <RouterLink v-for="link in legalLinks" :key="link.label" :to="link.href" class="hover:text-foreground transition-colors cursor-pointer">

@@ -20,7 +20,7 @@ import Button from '@/components/ui/Button.vue';
 
       <h2>1. Introduction</h2>
       <p>
-        Welcome to Clone Tools ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
+        Welcome to Velocity ("we," "our," or "us"). We respect your privacy and are committed to protecting your personal data. This privacy policy will inform you as to how we look after your personal data when you visit our website and tell you about your privacy rights and how the law protects you.
       </p>
 
       <h2>2. Data We Collect</h2>
@@ -50,7 +50,7 @@ import Button from '@/components/ui/Button.vue';
 
       <h2>5. Contact Us</h2>
       <p>
-        If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:support@ose.web.id" class="text-primary hover:underline">support@ose.web.id</a>
+        If you have any questions about this privacy policy or our privacy practices, please contact us at: <a href="mailto:ose.organization@gmail.com" class="text-primary hover:underline">ose.organization@gmail.com</a>
       </p>
     </div>
   </div>

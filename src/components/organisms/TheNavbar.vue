@@ -83,7 +83,7 @@ function setNavRef(el, id) {
   <header class="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <div class="container mx-auto flex h-14 items-center justify-between px-4 md:px-6">
       <div class="flex items-center gap-2 font-bold text-xl">
-        <img src="/img/logo.png" alt="Clone Tools Logo" class="h-8 w-auto">
+        <img src="/img/logo.png" alt="Velocity Logo" class="h-8 w-auto">
       </div>
 
       <nav
