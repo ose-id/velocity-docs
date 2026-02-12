@@ -8,19 +8,19 @@ const testimonials = [
   {
     name: 'Muhammad Fathir Ikhsan',
     role: 'Full Stack Developer',
-    avatar: 'https://i.pravatar.cc/150?u=2',
+    avatar: 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=fathir',
     content: 'Clone Tools has saved me so much time. Setting up a new environment is now just one click away. Highly recommended!',
   },
   {
     name: 'Banny Juanda',
     role: 'Full Stack Developer',
-    avatar: 'https://i.pravatar.cc/150?u=5',
+    avatar: 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=banny',
     content: 'The clean interface is a breath of fresh air. It integrates perfectly with VS Code, Cursor, and other IDEs. I can\'t imagine going back to CLI cloning.',
   },
   {
     name: 'Agung Ogya Widodo',
     role: 'Full Stack Developer',
-    avatar: 'https://i.pravatar.cc/150?u=17',
+    avatar: 'https://api.dicebear.com/9.x/fun-emoji/svg?seed=agung',
     content: 'I used to have to open the GitHub website to clone a repository. Now I don\'t need to do that anymore. Plus, being able to customize the project name is really helpful.',
   },
 ];
