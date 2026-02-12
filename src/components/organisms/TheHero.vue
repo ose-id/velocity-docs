@@ -41,7 +41,7 @@ const imageStyle = computed(() => {
     </div>
     <div class="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center gap-10">
       <div>
-        <img src="/img/logo.png" alt="Clone Tools Logo" class="h-16 w-auto mx-auto">
+        <img src="/img/logo.png" alt="Velocity Logo" class="h-16 w-auto mx-auto">
       </div>
       <h1 class="text-4xl md:text-6xl lg:text-8xl font-extrabold tracking-tight w-full max-w-none leading-none">
         Experience Speed with the <span class="text-primary">Next-Generation</span> Git Tool
@@ -76,7 +76,7 @@ const imageStyle = computed(() => {
           <div class="h-3 w-3 rounded-full bg-green-500" />
         </div>
         <div class="w-full bg-muted/50">
-          <img src="/img/hero.png" alt="Clone Tools Application Screenshot" class="w-full h-auto block">
+          <img src="/img/hero.png" alt="Velocity Application Screenshot" class="w-full h-auto block">
         </div>
       </div>
     </div>
