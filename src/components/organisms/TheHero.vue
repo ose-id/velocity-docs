@@ -32,7 +32,7 @@ const imageStyle = computed(() => {
         rays-color="#a3a3a3"
         :rays-speed="1.5"
         :light-spread="0.8"
-        :ray-length="1.2"
+        :ray-length="2.0"
         :follow-mouse="true"
         :mouse-influence="0.1"
         :noise-amount="0.1"
