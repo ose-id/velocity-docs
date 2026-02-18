@@ -15,7 +15,7 @@ import Button from '@/components/ui/Button.vue';
     <h1 class="text-3xl font-bold mb-8">
       Privacy Policy
     </h1>
-    <div class="prose prose-neutral dark:prose-invert max-w-none space-y-4">
+    <div class="prose prose-neutral dark:prose-invert max-w-none space-y-4 leading-loose">
       <p>Last updated: {{ new Date().toLocaleDateString() }}</p>
 
       <h2>1. Introduction</h2>
