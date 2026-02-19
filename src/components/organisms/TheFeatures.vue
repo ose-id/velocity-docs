@@ -1,5 +1,6 @@
 <script setup>
 import { Code, LayoutDashboard, Terminal } from 'lucide-vue-next';
+import SpotlightCard from '@/components/ui/SpotlightCard.vue';
 
 const features = [
   {
@@ -36,23 +37,22 @@ const features = [
       </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-      <div
+      <SpotlightCard
         v-for="feature in features"
         :key="feature.title"
-        class="group relative overflow-hidden rounded-2xl border border-white/5 bg-neutral-900/50 p-6 hover:border-white/10 hover:bg-neutral-900 transition-all duration-300"
+        class="rounded-2xl border border-white/5 bg-neutral-900/50 p-6 hover:border-white/10 transition-colors duration-300"
       >
         <div class="mb-4 inline-flex h-12 w-12 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 group-hover:bg-white/10 transition-colors">
           <component :is="feature.icon" class="h-6 w-6 text-white" />
         </div>
+
         <h3 class="mb-2 text-lg font-bold tracking-tight text-white">
           {{ feature.title }}
         </h3>
         <p class="text-sm text-muted-foreground leading-relaxed">
           {{ feature.description }}
         </p>
-
-        <div class="absolute inset-0 -z-10 bg-gradient-to-br from-white/5 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
-      </div>
+      </SpotlightCard>
     </div>
   </section>
 </template>

@@ -1,8 +1,8 @@
 <script setup>
-import Card from '@/components/ui/Card.vue';
 import CardContent from '@/components/ui/CardContent.vue';
 import CardHeader from '@/components/ui/CardHeader.vue';
 import CardTitle from '@/components/ui/CardTitle.vue';
+import SpotlightCard from '@/components/ui/SpotlightCard.vue';
 
 const testimonials = [
   {
@@ -37,7 +37,7 @@ const testimonials = [
       </p>
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-      <Card v-for="item in testimonials" :key="item.name" class="bg-background">
+      <SpotlightCard v-for="item in testimonials" :key="item.name" class="rounded-xl border bg-neutral-950">
         <CardHeader>
           <div class="flex items-center gap-4">
             <img :src="item.avatar" :alt="item.name" class="h-10 w-10 rounded-full">
@@ -54,7 +54,7 @@ const testimonials = [
         <CardContent>
           "{{ item.content }}"
         </CardContent>
-      </Card>
+      </SpotlightCard>
     </div>
   </section>
 </template>
