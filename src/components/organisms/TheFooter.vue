@@ -87,7 +87,7 @@ const legalLinks = [
 
       <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-muted-foreground">
         <a href="https://www.ose.web.id" target="_blank" class="flex items-center gap-2 font-bold text-foreground">
-          <img src="/img/logo.png" alt="Velocity Logo" class="h-6 w-auto">
+          <img src="/img/logo.webp" alt="Velocity Logo" class="h-6 w-auto">
         </a>
         <div class="flex gap-6">
           <RouterLink v-for="link in legalLinks" :key="link.label" :to="link.href" class="hover:text-foreground transition-colors cursor-pointer">
