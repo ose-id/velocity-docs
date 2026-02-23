@@ -1,11 +1,10 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core';
 import { computed } from 'vue';
+import DownloadDropdown from '@/components/molecules/DownloadDropdown.vue';
 import LightRays from '@/components/molecules/LightRays.vue';
 import Button from '@/components/ui/Button.vue';
-import { useGithubRelease } from '@/composables/useGithubRelease';
 
-const { downloadUrl } = useGithubRelease();
 const { y } = useWindowScroll();
 
 const imageStyle = computed(() => {
@@ -47,14 +46,12 @@ const imageStyle = computed(() => {
         Experience Speed with the <span class="text-primary">Next-Generation</span> Git Tool
       </h1>
       <div class="flex flex-col sm:flex-row gap-4">
-        <a :href="downloadUrl" download>
-          <Button size="lg" class="h-14 px-8 text-lg rounded-full bg-neutral-950 text-white hover:bg-neutral-900 border border-white/10 transition-all cursor-pointer">
-            <svg class="mr-3 h-4 w-4 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-              <path d="M0 3.44L9.366 2.126V11.53H0V3.44zm10.749-1.393L24 0v11.53H10.749V2.047zm0 10.906H24V24l-13.251-1.838v-9.21zM0 12.953h9.366v7.864L0 19.53v-6.577z" />
-            </svg>
-            Download for Windows
-          </Button>
-        </a>
+        <DownloadDropdown size="lg" btn-class="h-14 px-6 text-lg rounded-full" :show-icon="false">
+          <svg class="mr-3 h-5 w-5 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+            <path d="M0 3.44L9.366 2.126V11.53H0V3.44zm10.749-1.393L24 0v11.53H10.749V2.047zm0 10.906H24V24l-13.251-1.838v-9.21zM0 12.953h9.366v7.864L0 19.53v-6.577z" />
+          </svg>
+          Download for Windows
+        </DownloadDropdown>
         <a href="https://github.com/ose-id/velocity" target="_blank">
           <Button variant="outline" size="lg" class="h-14 px-8 text-lg rounded-full cursor-pointer">
             View on GitHub
@@ -62,7 +59,7 @@ const imageStyle = computed(() => {
         </a>
       </div>
       <p class="text-xs text-muted-foreground mt-2">
-        Requires Windows 10 or later
+        Currently available for Windows. Mac and Linux versions coming soon.
       </p>
     </div>
     <div class="relative z-10 container mx-auto px-4 md:px-6 mt-16">

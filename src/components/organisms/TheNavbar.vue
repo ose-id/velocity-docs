@@ -1,12 +1,9 @@
 <script setup>
 import { useIntersectionObserver } from '@vueuse/core';
-import { Download } from 'lucide-vue-next';
 import { nextTick, ref, watch } from 'vue';
 import { useRoute } from 'vue-router';
-import Button from '@/components/ui/Button.vue';
-import { useGithubRelease } from '@/composables/useGithubRelease';
+import DownloadDropdown from '@/components/molecules/DownloadDropdown.vue';
 
-const { downloadUrl } = useGithubRelease();
 const route = useRoute();
 const activeSection = ref('');
 const navRefs = ref({});
@@ -114,11 +111,7 @@ function setNavRef(el, id) {
       </nav>
 
       <div class="flex items-center gap-4">
-        <a :href="downloadUrl" download>
-          <Button size="sm" class="rounded-full bg-neutral-950 text-white hover:bg-neutral-900 border border-white/10 cursor-pointer">
-            Download <Download class="ml-3 h-3.5 w-3.5" />
-          </Button>
-        </a>
+        <DownloadDropdown size="sm" btn-class="rounded-full h-9" />
       </div>
     </div>
   </header>
