@@ -57,10 +57,11 @@ function updatePillPosition() {
   const activeId = activeSection.value;
   const el = navRefs.value[activeId];
   if (el) {
+    const rect = el.getBoundingClientRect();
     pillStyle.value = {
       opacity: 1,
       left: `${el.offsetLeft}px`,
-      width: `${el.offsetWidth}px`,
+      width: `${rect.width}px`,
     };
   }
   else {
