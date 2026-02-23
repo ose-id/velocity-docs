@@ -43,7 +43,7 @@ const imageStyle = computed(() => {
       <div>
         <img src="/img/velocity-logo.svg" alt="Velocity Logo" class="h-16 2k:h-24 4k:h-32 w-auto mx-auto" width="300" height="300">
       </div>
-      <h1 class="text-4xl md:text-6xl lg:text-8xl 2k:text-9xl 4k:text-[12rem] 2k:leading-tight font-extrabold tracking-tight w-full max-w-none leading-none">
+      <h1 class="text-4xl md:text-5xl lg:text-7xl 2k:text-9xl 4k:text-[12rem] 2k:leading-tight font-extrabold tracking-tight w-full max-w-none leading-none">
         Experience Speed with the <span class="text-primary">Next-Generation</span> Git Tool
       </h1>
       <div class="flex flex-col sm:flex-row gap-4 2k:gap-8 4k:gap-12 2k:mt-10 4k:mt-20">

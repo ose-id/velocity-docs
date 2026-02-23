@@ -28,6 +28,11 @@ coverage
 
 *.tsbuildinfo
 
+# AI Agents
+.agents
+*.agents
+skills-lock.json
+
 .eslintcache
 
 # Cypress
