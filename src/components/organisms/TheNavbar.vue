@@ -84,7 +84,7 @@ function setNavRef(el, id) {
   <header class="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
     <div class="container mx-auto flex h-14 items-center justify-between px-4 md:px-6">
       <RouterLink to="/" class="flex items-center gap-2 font-bold text-xl">
-        <img src="/img/velocity-logo.svg" alt="Velocity Logo" class="h-8 w-auto">
+        <img src="/img/velocity-logo.svg" alt="Velocity Logo" class="h-8 w-auto" width="300" height="300">
       </RouterLink>
 
       <nav
