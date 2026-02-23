@@ -6,7 +6,9 @@ import TheNavbar from '@/components/organisms/TheNavbar.vue';
 <template>
   <div class="min-h-screen bg-background font-sans antialiased text-foreground">
     <TheNavbar />
-    <RouterView />
+    <main>
+      <RouterView />
+    </main>
     <TheFooter />
   </div>
 </template>
