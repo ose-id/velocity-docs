@@ -1,6 +1,7 @@
 <script setup>
+import { onClickOutside } from '@vueuse/core';
 import { ChevronDown, Download } from 'lucide-vue-next';
-import { onMounted, onUnmounted, ref } from 'vue';
+import { ref } from 'vue';
 import Button from '@/components/ui/Button.vue';
 import { useGithubRelease } from '@/composables/useGithubRelease';
 
@@ -27,18 +28,8 @@ function toggleDropdown() {
   isOpen.value = !isOpen.value;
 }
 
-function closeDropdown(e) {
-  if (dropdownRef.value && !dropdownRef.value.contains(e.target)) {
-    isOpen.value = false;
-  }
-}
-
-onMounted(() => {
-  document.addEventListener('click', closeDropdown);
-});
-
-onUnmounted(() => {
-  document.removeEventListener('click', closeDropdown);
+onClickOutside(dropdownRef, () => {
+  isOpen.value = false;
 });
 </script>
 
