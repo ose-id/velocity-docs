@@ -54,23 +54,23 @@ const legalLinks = [
 </script>
 
 <template>
-  <footer class="bg-background border-t border-border/40 pt-20 pb-10 overflow-hidden">
-    <div class="container mx-auto px-4 md:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24">
+  <footer class="bg-background border-t border-border/40 pt-20 2k:pt-32 4k:pt-48 pb-10 4k:pb-16 overflow-hidden">
+    <div class="container mx-auto px-4 md:px-6 4k:px-12">
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24 2k:mb-32 4k:mb-48">
         <div>
-          <h3 class="text-2xl font-medium tracking-tight">
+          <h3 class="text-2xl 2k:text-4xl 4k:text-6xl font-medium tracking-tight">
             Experience speed.
           </h3>
         </div>
-        <div class="grid grid-cols-2 gap-8 text-sm text-muted-foreground">
-          <div v-for="section in footerSections" :key="section.title" class="space-y-3">
+        <div class="grid grid-cols-2 gap-8 text-sm 2k:text-xl 4k:text-3xl text-muted-foreground">
+          <div v-for="section in footerSections" :key="section.title" class="space-y-3 2k:space-y-6 4k:space-y-8">
             <h4 class="font-medium text-foreground">
               {{ section.title }}
             </h4>
-            <ul class="space-y-2">
+            <ul class="space-y-2 4k:space-y-4">
               <li v-for="link in section.links" :key="link.label">
-                <a :href="link.href" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors cursor-pointer flex items-center gap-2">
-                  <component :is="link.icon" v-if="link.icon" />
+                <a :href="link.href" target="_blank" rel="noopener noreferrer" class="hover:text-foreground transition-colors cursor-pointer flex items-center gap-2 2k:gap-3 4k:gap-5">
+                  <component :is="link.icon" v-if="link.icon" class="2k:w-6 2k:h-6 4k:w-8 4k:h-8" />
                   {{ link.label }}
                 </a>
               </li>
@@ -80,16 +80,16 @@ const legalLinks = [
       </div>
 
       <div class="relative w-full border-b border-border/40 mb-10">
-        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-center md:text-left select-none pointer-events-none opacity-90">
+        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-center select-none pointer-events-none opacity-90">
           VELOCITY
         </h1>
       </div>
 
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6 text-sm text-muted-foreground">
+      <div class="flex flex-col md:flex-row justify-between items-center gap-6 2k:gap-8 4k:gap-12 text-sm 2k:text-lg 4k:text-2xl text-muted-foreground">
         <a href="https://www.ose.web.id" target="_blank" class="flex items-center gap-2 font-bold text-foreground">
-          <img src="/img/logo.webp" alt="Velocity Logo" class="h-6 w-auto" width="120" height="24">
+          <img src="/img/logo.webp" alt="Velocity Logo" class="h-6 2k:h-10 4k:h-14 w-auto" width="120" height="24">
         </a>
-        <div class="flex gap-6">
+        <div class="flex gap-6 4k:gap-10">
           <RouterLink v-for="link in legalLinks" :key="link.label" :to="link.href" class="hover:text-foreground transition-colors cursor-pointer">
             {{ link.label }}
           </RouterLink>

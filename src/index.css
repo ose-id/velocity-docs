@@ -3,6 +3,9 @@
 @theme {
   --font-sans: 'Bricolage Grotesque', sans-serif;
 
+  --breakpoint-2k: 160rem; /* 2560px */
+  --breakpoint-4k: 240rem; /* 3840px */
+
   --color-border: hsl(var(--border));
   --color-input: hsl(var(--input));
   --color-ring: hsl(var(--ring));
@@ -55,9 +58,23 @@
   }
 }
 
-/* Force container centering */
+/* Force container centering with responsive bounds */
 @utility container {
   margin-inline: auto;
+  padding-inline: 1rem;
+  max-width: 100%;
+
+  @media (width >= 40rem) { max-width: 40rem; }
+  @media (width >= 48rem) { max-width: 48rem; }
+  @media (width >= 64rem) { max-width: 64rem; }
+  @media (width >= 80rem) { max-width: 80rem; }
+  @media (width >= 96rem) { max-width: 96rem; }
+  
+  /* Custom 2K (2560px) max-width bound around Full HD (1920 / 120rem) */
+  @media (width >= 160rem) { max-width: 120rem; padding-inline: 2rem; }
+  
+  /* Custom 4K (3840px) max-width bound around 2880px (180rem) */
+  @media (width >= 240rem) { max-width: 180rem; padding-inline: 4rem; }
 }
 
 @layer base {
