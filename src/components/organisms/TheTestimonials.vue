@@ -36,8 +36,12 @@ const testimonials = [
         Don't just take our word for it.
       </p>
     </div>
-    <div class="grid grid-cols-1 md:grid-cols-3 gap-8 4k:gap-12">
-      <SpotlightCard v-for="item in testimonials" :key="item.name" class="rounded-xl border bg-neutral-950 2k:p-6 4k:p-10">
+    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 4k:gap-12 mx-auto sm:max-w-xl md:max-w-none">
+      <SpotlightCard
+        v-for="item in testimonials"
+        :key="item.name"
+        class="rounded-xl border bg-neutral-950 2k:p-6 4k:p-10 md:last:col-span-2 lg:last:col-span-1 md:last:max-w-md md:last:mx-auto lg:last:max-w-none"
+      >
         <CardHeader>
           <div class="flex items-center gap-4 2k:gap-6 4k:gap-10">
             <img :src="item.avatar" :alt="item.name" class="h-10 w-10 2k:h-16 2k:w-16 4k:h-24 4k:w-24 rounded-full">
