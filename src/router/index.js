@@ -27,7 +27,7 @@ const router = createRouter({
     else {
       return new Promise((resolve) => {
         setTimeout(() => {
-          resolve({ top: 0, behavior: 'smooth' });
+          resolve({ top: 0 });
         }, 100);
       });
     }

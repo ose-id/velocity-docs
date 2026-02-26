@@ -35,19 +35,19 @@ function startAnimation() {
   });
 }
 
+const isVisible = ref(false);
+
 useIntersectionObserver(
   counterRef,
   ([{ isIntersecting }]) => {
-    if (isIntersecting && !hasAnimated && totalDownloads.value > 0) {
-      hasAnimated = true;
-      startAnimation();
-    }
+    isVisible.value = isIntersecting;
   },
   { threshold: 0.5 },
 );
 
-watch(totalDownloads, (newVal) => {
-  if (newVal > 0 && hasAnimated) {
+watch([totalDownloads, isVisible], ([newTotal, visible]) => {
+  if (visible && newTotal > 0 && !hasAnimated) {
+    hasAnimated = true;
     startAnimation();
   }
 });

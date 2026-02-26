@@ -4,9 +4,14 @@ import { computed, onMounted, ref } from 'vue';
 const REPO = import.meta.env.VITE_GITHUB_REPO || 'ose-id/velocity';
 const API_URL = `https://api.github.com/repos/${REPO}/releases/latest`;
 const FALLBACK_URL = `https://github.com/${REPO}/releases/latest`;
+const GITHUB_TOKEN = import.meta.env.VITE_GITHUB_TOKEN;
 
 export function useGithubRelease() {
-  const { data, isFetching } = useFetch(API_URL).json();
+  const fetchOptions = GITHUB_TOKEN
+    ? { headers: { Authorization: `Bearer ${GITHUB_TOKEN}` } }
+    : {};
+
+  const { data, isFetching } = useFetch(API_URL, fetchOptions).json();
 
   const userArch = ref('x64');
 
@@ -23,33 +28,38 @@ export function useGithubRelease() {
   });
 
   const downloadLinks = computed(() => {
-    if (data.value && data.value.assets) {
+    if (data.value && data.value.message) {
+      console.error('GitHub API Error in Release:', data.value.message);
+    }
+    if (data.value && Array.isArray(data.value.assets)) {
       const exeAssets = data.value.assets.filter(asset =>
-        asset.name.endsWith('.exe'),
+        asset.name.toLowerCase().endsWith('.exe'),
       );
 
       if (exeAssets.length > 0) {
         return exeAssets.map((asset) => {
           let arch = 'x64';
-          if (asset.name.includes('arm64'))
+          const lowerName = asset.name.toLowerCase();
+
+          if (lowerName.includes('arm64') || lowerName.includes('aarch64')) {
             arch = 'arm64';
-          if (asset.name.includes('ia32'))
+          }
+          else if (lowerName.includes('ia32') || lowerName.includes('x86') || lowerName.includes('32bit') || lowerName.includes('386')) {
             arch = 'ia32';
-          if (asset.name.includes('x64'))
-            arch = 'x64';
+          }
 
           return {
             label: `Windows (${arch})`,
             arch,
             url: asset.browser_download_url,
           };
-        }).sort((a, b) => {
+        }).filter((v, i, a) => a.findIndex(t => (t.arch === v.arch)) === i).sort((a, b) => {
           if (a.arch === userArch.value)
             return -1;
           if (b.arch === userArch.value)
             return 1;
           const order = { x64: 1, arm64: 2, ia32: 3 };
-          return order[a.arch] - order[b.arch];
+          return (order[a.arch] || 99) - (order[b.arch] || 99);
         });
       }
     }
