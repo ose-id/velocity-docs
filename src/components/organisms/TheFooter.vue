@@ -80,7 +80,7 @@ const legalLinks = [
       </div>
 
       <div class="relative w-full border-b border-border/40 mb-10">
-        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-center select-none pointer-events-none opacity-90">
+        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-left select-none pointer-events-none opacity-90">
           VELOCITY
         </h1>
       </div>
