@@ -1,5 +1,8 @@
 <script setup>
+import { useIntersectionObserver } from '@vueuse/core';
+import { animate, stagger } from 'animejs';
 import { Code, LayoutDashboard, Terminal } from 'lucide-vue-next';
+import { ref } from 'vue';
 import SpotlightCard from '@/components/ui/SpotlightCard.vue';
 
 const features = [
@@ -24,15 +27,45 @@ const features = [
     icon: LayoutDashboard,
   },
 ];
+
+const featuresRef = ref(null);
+let hasAnimated = false;
+
+useIntersectionObserver(
+  featuresRef,
+  ([{ isIntersecting }]) => {
+    if (isIntersecting && !hasAnimated) {
+      hasAnimated = true;
+
+      animate(featuresRef.value.querySelectorAll('.feature-header-animate'), {
+        translateY: [30, 0],
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeOutCubic',
+        delay: stagger(150),
+      });
+
+      animate(featuresRef.value.querySelectorAll('.feature-card-animate'), {
+        translateY: [60, 0],
+        scale: [0.95, 1],
+        opacity: [0, 1],
+        duration: 1200,
+        easing: 'easeOutElastic(1, 0.8)',
+        delay: stagger(120, { start: 200 }),
+      });
+    }
+  },
+  { threshold: 0.2 },
+);
 </script>
 
 <template>
-  <section id="features" class="container mx-auto px-4 md:px-6 py-20 bg-muted/30">
+  <section id="features" ref="featuresRef" class="container mx-auto px-4 md:px-6 py-20 bg-muted/30">
     <div class="text-center mb-16 space-y-4 2k:space-y-8 4k:space-y-12">
-      <h2 class="text-3xl lg:text-4xl 2k:text-6xl 4k:text-8xl font-bold tracking-tight uppercase">
+      <h2 class="feature-header-animate opacity-0 text-3xl lg:text-4xl 2k:text-6xl 4k:text-8xl font-bold tracking-tight uppercase">
         Streamline Your Workflow
       </h2>
-      <p class="text-muted-foreground text-base lg:text-lg 2k:text-2xl 4k:text-4xl max-w-2xl 2k:max-w-4xl 4k:max-w-6xl mx-auto">
+      <p class="feature-header-animate opacity-0 text-muted-foreground text-base lg:text-lg 2k:text-2xl 4k:text-4xl max-w-2xl 2k:max-w-4xl 4k:max-w-6xl mx-auto">
         Everything you need to manage your repositories efficiently.
       </p>
     </div>
@@ -40,7 +73,7 @@ const features = [
       <SpotlightCard
         v-for="feature in features"
         :key="feature.title"
-        class="rounded-2xl border border-white/5 bg-neutral-900/50 p-6 4k:p-12 hover:border-white/10 transition-colors duration-300"
+        class="feature-card-animate opacity-0 rounded-2xl border border-white/5 bg-neutral-900/50 p-6 4k:p-12 hover:border-white/10 transition-colors duration-300"
       >
         <div class="mb-4 inline-flex h-12 w-12 2k:h-16 2k:w-16 4k:h-24 4k:w-24 items-center justify-center rounded-xl bg-white/5 ring-1 ring-white/10 group-hover:bg-white/10 transition-colors">
           <component :is="feature.icon" class="h-6 w-6 2k:h-8 2k:w-8 4k:h-12 4k:w-12 text-white" />

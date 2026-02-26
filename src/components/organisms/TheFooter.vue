@@ -1,5 +1,7 @@
 <script setup>
-import { h } from 'vue';
+import { useIntersectionObserver } from '@vueuse/core';
+import { animate, stagger } from 'animejs';
+import { h, ref } from 'vue';
 
 const BlueSkyIcon = {
   render: () =>
@@ -51,18 +53,50 @@ const legalLinks = [
   { label: 'Privacy Service', href: '/privacy' },
   { label: 'Terms of Service', href: '/terms' },
 ];
+
+const footerRef = ref(null);
+const velocityLettersRef = ref(null);
+let hasAnimated = false;
+
+useIntersectionObserver(
+  footerRef,
+  ([{ isIntersecting }]) => {
+    if (isIntersecting && !hasAnimated) {
+      hasAnimated = true;
+
+      animate(footerRef.value.querySelectorAll('.footer-animate'), {
+        translateY: [40, 0],
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeOutCubic',
+        delay: stagger(100),
+      });
+
+      const letters = velocityLettersRef.value.querySelectorAll('.velocity-letter');
+
+      animate(letters, {
+        translateX: [80, 0],
+        opacity: [0, 1],
+        duration: 1200,
+        easing: 'easeOutCubic',
+        delay: stagger(120, { start: 800 }),
+      });
+    }
+  },
+  { threshold: 0.2 },
+);
 </script>
 
 <template>
-  <footer class="bg-background border-t border-border/40 pt-20 2k:pt-32 4k:pt-48 pb-10 4k:pb-16 overflow-hidden">
+  <footer ref="footerRef" class="bg-background border-t border-border/40 pt-20 2k:pt-32 4k:pt-48 pb-10 4k:pb-16 overflow-hidden">
     <div class="container mx-auto px-4 md:px-6 4k:px-12">
       <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-24 2k:mb-32 4k:mb-48">
-        <div>
+        <div class="footer-animate opacity-0">
           <h3 class="text-2xl 2k:text-4xl 4k:text-6xl font-medium tracking-tight">
             Experience speed.
           </h3>
         </div>
-        <div class="grid grid-cols-2 gap-8 text-sm 2k:text-xl 4k:text-3xl text-muted-foreground">
+        <div class="footer-animate opacity-0 grid grid-cols-2 gap-8 text-sm 2k:text-xl 4k:text-3xl text-muted-foreground">
           <div v-for="section in footerSections" :key="section.title" class="space-y-3 2k:space-y-6 4k:space-y-8">
             <h4 class="font-medium text-foreground">
               {{ section.title }}
@@ -79,13 +113,15 @@ const legalLinks = [
         </div>
       </div>
 
-      <div class="relative w-full border-b border-border/40 mb-10">
-        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-left select-none pointer-events-none opacity-90">
-          VELOCITY
+      <div ref="velocityLettersRef" class="relative w-full border-b border-border/40 mb-10">
+        <h1 class="text-[12vw] leading-[0.8] font-bold tracking-widest text-left select-none pointer-events-none flex">
+          <span v-for="(letter, i) in 'VELOCITY'.split('')" :key="i" class="velocity-letter opacity-0 inline-block">
+            {{ letter }}
+          </span>
         </h1>
       </div>
 
-      <div class="flex flex-col md:flex-row justify-between items-center gap-6 2k:gap-8 4k:gap-12 text-sm 2k:text-lg 4k:text-2xl text-muted-foreground">
+      <div class="footer-animate opacity-0 flex flex-col md:flex-row justify-between items-center gap-6 2k:gap-8 4k:gap-12 text-sm 2k:text-lg 4k:text-2xl text-muted-foreground">
         <a href="https://www.ose.web.id" target="_blank" class="flex items-center gap-2 font-bold text-foreground">
           <img src="/img/logo.webp" alt="Velocity Logo" class="h-6 2k:h-10 4k:h-14 w-auto" width="120" height="24">
         </a>

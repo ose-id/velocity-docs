@@ -1,4 +1,7 @@
 <script setup>
+import { useIntersectionObserver } from '@vueuse/core';
+import { animate, stagger } from 'animejs';
+import { ref } from 'vue';
 import CardContent from '@/components/ui/CardContent.vue';
 import CardHeader from '@/components/ui/CardHeader.vue';
 import CardTitle from '@/components/ui/CardTitle.vue';
@@ -24,15 +27,45 @@ const testimonials = [
     content: 'I used to have to open the GitHub website to clone a repository. Now I don\'t need to do that anymore. Plus, being able to customize the project name is really helpful.',
   },
 ];
+
+const testimonialsRef = ref(null);
+let hasAnimated = false;
+
+useIntersectionObserver(
+  testimonialsRef,
+  ([{ isIntersecting }]) => {
+    if (isIntersecting && !hasAnimated) {
+      hasAnimated = true;
+
+      animate(testimonialsRef.value.querySelectorAll('.testimonials-header-animate'), {
+        translateY: [30, 0],
+        opacity: [0, 1],
+        duration: 1000,
+        easing: 'easeOutCubic',
+        delay: stagger(150),
+      });
+
+      animate(testimonialsRef.value.querySelectorAll('.testimonials-card-animate'), {
+        translateY: [60, 0],
+        scale: [0.95, 1],
+        opacity: [0, 1],
+        duration: 1200,
+        easing: 'easeOutElastic(1, 0.8)',
+        delay: stagger(120, { start: 200 }),
+      });
+    }
+  },
+  { threshold: 0.2 },
+);
 </script>
 
 <template>
-  <section id="testimonials" class="container mx-auto px-4 md:px-6 py-20">
+  <section id="testimonials" ref="testimonialsRef" class="container mx-auto px-4 md:px-6 py-20">
     <div class="text-center mb-16 space-y-4 2k:space-y-8 4k:space-y-12">
-      <h2 class="text-3xl lg:text-4xl 2k:text-6xl 4k:text-8xl font-bold tracking-tight uppercase">
+      <h2 class="testimonials-header-animate opacity-0 text-3xl lg:text-4xl 2k:text-6xl 4k:text-8xl font-bold tracking-tight uppercase">
         Loved by Developers
       </h2>
-      <p class="text-muted-foreground text-base lg:text-lg 2k:text-2xl 4k:text-4xl">
+      <p class="testimonials-header-animate opacity-0 text-muted-foreground text-base lg:text-lg 2k:text-2xl 4k:text-4xl">
         Don't just take our word for it.
       </p>
     </div>
@@ -40,7 +73,7 @@ const testimonials = [
       <SpotlightCard
         v-for="item in testimonials"
         :key="item.name"
-        class="rounded-xl border bg-neutral-950 2k:p-6 4k:p-10 md:last:col-span-2 lg:last:col-span-1 md:last:max-w-md md:last:mx-auto lg:last:max-w-none"
+        class="testimonials-card-animate opacity-0 rounded-xl border bg-neutral-950 2k:p-6 4k:p-10 md:last:col-span-2 lg:last:col-span-1 md:last:max-w-md md:last:mx-auto lg:last:max-w-none"
       >
         <CardHeader>
           <div class="flex items-center gap-4 2k:gap-6 4k:gap-10">

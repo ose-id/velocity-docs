@@ -1,6 +1,7 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core';
-import { computed } from 'vue';
+import { createTimeline, stagger } from 'animejs';
+import { computed, onMounted, ref } from 'vue';
 import DownloadDropdown from '@/components/molecules/DownloadDropdown.vue';
 import LightRays from '@/components/molecules/LightRays.vue';
 import TotalDownloads from '@/components/molecules/TotalDownloads.vue';
@@ -22,6 +23,44 @@ const imageStyle = computed(() => {
     transition: 'transform 0.1s linear',
   };
 });
+
+const heroLogo = ref(null);
+const heroTitle = ref(null);
+const heroButtons = ref(null);
+const heroStats = ref(null);
+
+onMounted(() => {
+  const tl = createTimeline({
+    easing: 'easeOutExpo',
+    duration: 1000,
+  });
+
+  tl
+    .add(heroLogo.value, {
+      scale: [0, 1],
+      opacity: [0, 1],
+      easing: 'easeOutElastic(1, 0.5)',
+      duration: 1200,
+    })
+    .add(heroTitle.value, {
+      translateY: [100, 0],
+      opacity: [0, 1],
+      easing: 'spring(1, 80, 10, 0)',
+    }, '-=1000')
+    .add(heroButtons.value, {
+      translateX: [30, 0],
+      opacity: [0, 1],
+      delay: stagger(100),
+      easing: 'easeOutCubic',
+      duration: 800,
+    }, '-=800')
+    .add(heroStats.value, {
+      translateY: [20, 0],
+      opacity: [0, 1],
+      easing: 'easeOutQuad',
+      duration: 600,
+    }, '-=600');
+});
 </script>
 
 <template>
@@ -40,13 +79,13 @@ const imageStyle = computed(() => {
       />
     </div>
     <div class="relative z-10 container mx-auto px-4 md:px-6 flex flex-col items-center justify-center text-center gap-10">
-      <div>
+      <div ref="heroLogo" class="opacity-0">
         <img src="/img/velocity-logo.svg" alt="Velocity Logo" class="h-16 2k:h-24 4k:h-32 w-auto mx-auto" width="300" height="300">
       </div>
-      <h1 class="text-4xl md:text-5xl lg:text-7xl 2k:text-9xl 4k:text-[12rem] 2k:leading-tight font-extrabold tracking-tight w-full max-w-none leading-none">
+      <h1 ref="heroTitle" class="opacity-0 text-4xl md:text-5xl lg:text-7xl 2k:text-9xl 4k:text-[12rem] 2k:leading-tight font-extrabold tracking-tight w-full max-w-none leading-none">
         Experience Speed with the <span class="text-primary">Next-Generation</span> Git Tool
       </h1>
-      <div class="flex flex-col sm:flex-row gap-4 2k:gap-8 4k:gap-12 2k:mt-10 4k:mt-20">
+      <div ref="heroButtons" class="opacity-0 flex flex-col sm:flex-row gap-4 2k:gap-8 4k:gap-12 2k:mt-10 4k:mt-20">
         <DownloadDropdown size="lg" btn-class="h-14 2k:h-20 4k:h-28 px-6 2k:px-10 4k:px-16 text-lg 2k:text-2xl 4k:text-4xl rounded-full" :show-icon="false">
           <svg class="mr-3 h-5 w-5 2k:h-8 2k:w-8 4k:h-12 4k:w-12 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 3.44L9.366 2.126V11.53H0V3.44zm10.749-1.393L24 0v11.53H10.749V2.047zm0 10.906H24V24l-13.251-1.838v-9.21zM0 12.953h9.366v7.864L0 19.53v-6.577z" />
@@ -59,10 +98,12 @@ const imageStyle = computed(() => {
           </Button>
         </a>
       </div>
-      <TotalDownloads class="2k:scale-125 4k:scale-150 2k:mt-6 4k:mt-12" />
-      <p class="text-xs 2k:text-lg 4k:text-2xl text-muted-foreground mt-2 2k:mt-8 4k:mt-12">
-        Currently available for Windows. Mac and Linux versions coming soon.
-      </p>
+      <div ref="heroStats" class="opacity-0">
+        <TotalDownloads class="2k:scale-125 4k:scale-150 2k:mt-6 4k:mt-12" />
+        <p class="text-xs 2k:text-lg 4k:text-2xl text-muted-foreground mt-2 2k:mt-8 4k:mt-12">
+          Currently available for Windows. Mac and Linux versions coming soon.
+        </p>
+      </div>
     </div>
     <div class="relative z-10 container mx-auto px-4 md:px-6 mt-16 2k:mt-32 4k:mt-48">
       <div
