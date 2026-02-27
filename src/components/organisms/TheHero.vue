@@ -47,26 +47,26 @@ const imageStyle = computed(() => {
         Experience Speed with the <span class="text-primary">Next-Generation</span> Git Tool
       </h1>
       <div class="flex flex-col sm:flex-row gap-4 2k:gap-8 4k:gap-12 2k:mt-10 4k:mt-20">
-        <DownloadDropdown size="lg" btn-class="h-14 2k:h-20 4k:h-28 px-6 2k:px-10 4k:px-16 text-lg 2k:text-2xl 4k:text-4xl rounded-full" :show-icon="false">
-          <svg class="mr-3 h-5 w-5 2k:h-8 2k:w-8 4k:h-12 4k:w-12 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+        <DownloadDropdown size="lg" btn-class="h-10 sm:h-14 2k:h-20 4k:h-28 px-4 sm:px-6 2k:px-10 4k:px-16 text-sm sm:text-lg 2k:text-2xl 4k:text-4xl rounded-full" :show-icon="false">
+          <svg class="mr-2 sm:mr-3 h-4 w-4 sm:h-5 sm:w-5 2k:h-8 2k:w-8 4k:h-12 4k:w-12 fill-current" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
             <path d="M0 3.44L9.366 2.126V11.53H0V3.44zm10.749-1.393L24 0v11.53H10.749V2.047zm0 10.906H24V24l-13.251-1.838v-9.21zM0 12.953h9.366v7.864L0 19.53v-6.577z" />
           </svg>
           Download for Windows
         </DownloadDropdown>
         <a href="https://github.com/ose-id/velocity" target="_blank">
-          <Button variant="outline" size="lg" class="h-14 2k:h-20 4k:h-28 px-8 2k:px-12 4k:px-20 text-lg 2k:text-2xl 4k:text-4xl rounded-full cursor-pointer">
+          <Button variant="outline" size="lg" class="h-10 sm:h-14 2k:h-20 4k:h-28 px-6 sm:px-8 2k:px-12 4k:px-20 text-sm sm:text-lg 2k:text-2xl 4k:text-4xl rounded-full cursor-pointer">
             View on GitHub
           </Button>
         </a>
       </div>
       <TotalDownloads class="2k:scale-125 4k:scale-150 2k:mt-6 4k:mt-12" />
-      <p class="text-xs 2k:text-lg 4k:text-2xl text-muted-foreground mt-2 2k:mt-8 4k:mt-12">
+      <p class="max-w-xs sm:max-w-none text-xs 2k:text-lg 4k:text-2xl text-muted-foreground mt-2 2k:mt-8 4k:mt-12">
         Currently available for Windows. Mac and Linux versions coming soon.
       </p>
     </div>
     <div class="relative z-10 container mx-auto px-4 md:px-6 mt-16 2k:mt-32 4k:mt-48">
       <div
-        class="w-full max-w-5xl xl:max-w-6xl 2k:max-w-7xl 4k:max-w-[120rem] mx-auto overflow-hidden rounded-xl border bg-muted/50 shadow-xl"
+        class="w-full max-w-5xl xl:max-w-6xl 2k:max-w-7xl 4k:max-w-480 mx-auto overflow-hidden rounded-xl border bg-muted/50 shadow-xl"
         :style="imageStyle"
       >
         <div class="flex items-center gap-2 border-b bg-background/50 p-4 backdrop-blur">

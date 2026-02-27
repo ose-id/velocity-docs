@@ -15,7 +15,7 @@ onMounted(() => {
 </script>
 
 <template>
-  <header ref="navbarRef" class="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 opacity-0">
+  <header ref="navbarRef" class="sticky top-0 z-50 w-full bg-background/95 backdrop-blur supports-backdrop-filter:bg-background/60 opacity-0">
     <div class="container mx-auto flex h-14 2k:h-20 4k:h-28 items-center justify-between px-4 md:px-6 4k:px-12">
       <RouterLink to="/" class="flex items-center gap-2 font-bold text-xl">
         <img src="/img/velocity-logo.svg" alt="Velocity Logo" class="h-8 2k:h-12 4k:h-16 w-auto" width="300" height="300">
