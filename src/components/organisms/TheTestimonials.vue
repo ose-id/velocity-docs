@@ -2,10 +2,10 @@
 import { useIntersectionObserver } from '@vueuse/core';
 import { animate, stagger } from 'animejs';
 import { ref } from 'vue';
-import CardContent from '@/components/ui/CardContent.vue';
-import CardHeader from '@/components/ui/CardHeader.vue';
-import CardTitle from '@/components/ui/CardTitle.vue';
-import SpotlightCard from '@/components/ui/SpotlightCard.vue';
+import CardContent from '@/components/atoms/CardContent.vue';
+import CardHeader from '@/components/atoms/CardHeader.vue';
+import CardTitle from '@/components/atoms/CardTitle.vue';
+import SpotlightCard from '@/components/atoms/SpotlightCard.vue';
 
 const testimonials = [
   {

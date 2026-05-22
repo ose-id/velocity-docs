@@ -1,10 +1,10 @@
 <script setup>
 import { useWindowScroll } from '@vueuse/core';
 import { computed } from 'vue';
+import Button from '@/components/atoms/Button.vue';
 import DownloadDropdown from '@/components/molecules/DownloadDropdown.vue';
 import LightRays from '@/components/molecules/LightRays.vue';
 import TotalDownloads from '@/components/molecules/TotalDownloads.vue';
-import Button from '@/components/ui/Button.vue';
 
 const { y } = useWindowScroll();
 

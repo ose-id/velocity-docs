@@ -3,7 +3,7 @@ import { useIntersectionObserver } from '@vueuse/core';
 import { animate, stagger } from 'animejs';
 import { Code, LayoutDashboard, Terminal } from 'lucide-vue-next';
 import { ref } from 'vue';
-import SpotlightCard from '@/components/ui/SpotlightCard.vue';
+import SpotlightCard from '@/components/atoms/SpotlightCard.vue';
 
 const features = [
   {

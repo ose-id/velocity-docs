@@ -2,7 +2,7 @@
 import { onClickOutside } from '@vueuse/core';
 import { ChevronDown, Download } from 'lucide-vue-next';
 import { ref } from 'vue';
-import Button from '@/components/ui/Button.vue';
+import Button from '@/components/atoms/Button.vue';
 import { useGithubRelease } from '@/composables/useGithubRelease';
 
 defineProps({
